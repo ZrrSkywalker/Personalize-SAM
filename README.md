@@ -1,4 +1,4 @@
-# Personalize Segment Anything in 10 Seconds
+# Personalize Segment Anything Model in 10 Seconds
 
 Official implementation of ['Personalize Segment Anything Model with One Shot']().
 
