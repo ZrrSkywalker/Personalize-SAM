@@ -1,6 +1,6 @@
 # Personalize Segment Anything Model in 10 Seconds
 
-Official implementation of ['Personalize Segment Anything Model with One Shot']().
+Official implementation of ['Personalize Segment Anything Model with One Shot'](https://github.com/ZrrSkywalker/Personalize-SAM/blob/main/paper_arXiv.pdf).
 
 ## News
 * TODO: Release the PerSAM-assisted [Dreambooth](https://arxiv.org/pdf/2208.12242.pdf) for better fine-tuning [Stable Diffusion](https://github.com/CompVis/stable-diffusion) 📌.
