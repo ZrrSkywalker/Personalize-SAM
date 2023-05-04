@@ -11,7 +11,7 @@ Official implementation of ['Personalize Segment Anything Model with One Shot'](
 *How to customize SAM to automatically segment your pet dog in a photo album?*
 
 In this project, we propose a training-free **Per**sonalization approach for [Segment Anything Model (SAM)](https://ai.facebook.com/research/publications/segment-anything/), termed as **PerSAM**. Given only a single image with a reference mask, PerSAM can segment specific visual concepts, e.g., your pet dog, within other images or videos without any training. 
-For better performance, we present an efficient one-shot fine-tuning variant, **PerSAM-F**. We freezing the entire SAM and introduce two learnable mask weights, which only trains **2 parameters** within **10 seconds**. 
+For better performance, we further present an efficient one-shot fine-tuning variant, **PerSAM-F**. We freeze the entire SAM and introduce two learnable mask weights, which only trains **2 parameters** within **10 seconds**. 
 
 <div align="center">
   <img src="figs/fig_persam.png"/ width="97%"> <br>
