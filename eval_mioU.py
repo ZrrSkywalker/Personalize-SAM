@@ -31,8 +31,6 @@ def main():
     mIoU, mAcc = 0, 0
     count = 0
     for class_name in class_names:
-        if class_name in ["physics_mug", "clock", "pink_sunglasses", "cat2", "red_teapot", "mug_skulls", "flower", "vase"]:
-            continue
         count += 1
         gt_path_class = os.path.join(args.gt_path, class_name)
         pred_path_class = os.path.join("./outputs/" + args.pred_path, class_name)
