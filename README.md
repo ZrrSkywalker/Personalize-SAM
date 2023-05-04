@@ -5,7 +5,7 @@ Official implementation of ['Personalize Segment Anything Model with One Shot'](
 ## News
 * TODO: Release the PerSAM-assisted [Dreambooth](https://arxiv.org/pdf/2208.12242.pdf) for better fine-tuning [Stable Diffusion](https://github.com/CompVis/stable-diffusion) 📌.
 * We release the code of PerSAM and PerSAM-F 🔥.
-* We release a new dataset for personalized segmentation, [PerSeg]() 🔥.
+* We release a new dataset for personalized segmentation, [PerSeg](https://drive.google.com/file/d/18TbrwhZtAPY5dlaoEqkPa5h08G9Rjcio/view?usp=sharing) 🔥.
 
 ## Introduction
 *How to customize SAM to automatically segment your pet dog in a photo album?*
@@ -41,7 +41,7 @@ Similar to Segment Anything, our code requires `pytorch>=1.7` and `torchvision>=
 
 
 ### Preparation
-Please download our constructed dataset **PerSeg** for personalized segmentation from [here](), and the pre-trained weights of SAM from [here](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth). Then, unzip the dataset file and organize them as
+Please download our constructed dataset **PerSeg** for personalized segmentation from [here](https://drive.google.com/file/d/18TbrwhZtAPY5dlaoEqkPa5h08G9Rjcio/view?usp=sharing), and the pre-trained weights of SAM from [here](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth). Then, unzip the dataset file and organize them as
 ```
 data/
 |–– Annotations/
