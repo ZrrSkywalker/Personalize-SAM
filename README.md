@@ -1,4 +1,4 @@
-# Personalize Segment Anything in 10 Seconds
+# Personalize Segment Anything in 10 Seconds with 1 Shot
 
 Official implementation of ['Personalize Segment Anything Model with One Shot'](https://github.com/ZrrSkywalker/Personalize-SAM/blob/main/paper_arXiv.pdf).
 
