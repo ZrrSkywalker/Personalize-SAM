@@ -1,6 +1,6 @@
 # Personalize Segment Anything with 1 Shot in 10 Seconds
 
-Official implementation of ['Personalize Segment Anything Model with One Shot'](https://github.com/ZrrSkywalker/Personalize-SAM/blob/main/paper_arXiv.pdf).
+Official implementation of ['Personalize Segment Anything Model with One Shot'](https://arxiv.org/pdf/2305.03048.pdf).
 
 ## News
 * TODO: Release the PerSAM-assisted [Dreambooth](https://arxiv.org/pdf/2208.12242.pdf) for better fine-tuning [Stable Diffusion](https://github.com/CompVis/stable-diffusion) 📌.
@@ -74,6 +74,18 @@ python eval_mioU.py --pred_path <output filename>
 Our approach can enhance DreamBooth to better personalize Stable Diffusion for text-to-image generation.
 
 Comming soon.
+
+## Citation
+```bash
+@misc{zhang2023personalize,
+      title={Personalize Segment Anything Model with One Shot}, 
+      author={Renrui Zhang and Zhengkai Jiang and Ziyu Guo and Shilin Yan and Junting Pan and Hao Dong and Peng Gao and Hongsheng Li},
+      year={2023},
+      eprint={2305.03048},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
 
 ## Acknowledgement
 This repo benefits from [Segment Anything](https://github.com/facebookresearch/segment-anything) and [DreamBooth](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion). Thanks for their wonderful works.
