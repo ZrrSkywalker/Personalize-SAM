@@ -3,7 +3,7 @@
 Official implementation of ['Personalize Segment Anything Model with One Shot'](https://arxiv.org/pdf/2305.03048.pdf).
 
 ## News
-* TODO: Release the PerSAM-assisted [Dreambooth](https://arxiv.org/pdf/2208.12242.pdf) for better fine-tuning [Stable Diffusion](https://github.com/CompVis/stable-diffusion) 📌.
+* **TODO**: Release the PerSAM-assisted [Dreambooth](https://arxiv.org/pdf/2208.12242.pdf) for better fine-tuning [Stable Diffusion](https://github.com/CompVis/stable-diffusion) 📌.
 * We release the code of PerSAM and PerSAM-F 🔥. Check our [demo](https://www.youtube.com/watch?v=QlunvXpYQXM) here!
 * We release a new dataset for personalized segmentation, [PerSeg](https://drive.google.com/file/d/18TbrwhZtAPY5dlaoEqkPa5h08G9Rjcio/view?usp=sharing) 🔥.
 
@@ -63,7 +63,7 @@ For 10-second fine-tuning of 🚀 **PerSAM-F**, just run:
 python persam_f.py --outdir <output filename>
 ```
 
-After running, the output masks and visualzations will be stored at `<output filename>`. 
+After running, the output masks and visualzations will be stored at `outputs/<output filename>`. 
 
 Then, for mIoU evaluation, please run:
 ```bash
