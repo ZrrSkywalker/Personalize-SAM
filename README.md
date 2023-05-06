@@ -67,7 +67,7 @@ After running, the output masks and visualzations will be stored at `outputs/<ou
 
 Then, for mIoU evaluation, please run:
 ```bash
-python eval_mioU.py --pred_path <output filename>
+python eval_miou.py --pred_path <output filename>
 ```
 
 ### Personalized Stable Diffusion
