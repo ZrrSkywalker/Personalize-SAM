@@ -471,8 +471,8 @@ def inference_finetune(ic_image, ic_mask, image1, image2):
 description = """
 <div style="text-align: center; font-weight: bold;">
     <span style="font-size: 18px" id="paper-info">
-        [<a href="https://github.com/ZrrSkywalker/Personalize-SAM" target="_blank">GitHub</a>]
-        [<a href="https://arxiv.org/pdf/2305.03048.pdf" target="_blank">Paper</a>]
+        [<a href="https://github.com/ZrrSkywalker/Personalize-SAM" target="_blank"><font color='black'>Github</font></a>]
+        [<a href="https://arxiv.org/pdf/2305.03048.pdf" target="_blank"><font color='black'>Paper</font></a>]
     </span>
 </div>
 """
