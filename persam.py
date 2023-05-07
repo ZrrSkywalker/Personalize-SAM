@@ -50,15 +50,12 @@ def persam(args, obj_name, images_path, masks_path, output_path):
     print("\n------------> Segment " + obj_name)
     
     # Path preparation
-    ref_image_path = images_path + obj_name + '/' + args.ref_idx + '.jpg'
-    ref_mask_path = masks_path + obj_name + '/' + args.ref_idx + '.png'
-    test_images_path = images_path + obj_name
+    ref_image_path = os.path.join(images_path, obj_name, args.ref_idx + '.jpg')
+    ref_mask_path = os.path.join(masks_path, obj_name, args.ref_idx + '.png')
+    test_images_path = os.path.join(images_path, obj_name)
 
-    if not os.path.exists(output_path):
-        os.mkdir(output_path)
-    output_path = output_path + '/' + obj_name + '/'
-    if not os.path.exists(output_path):
-        os.mkdir(output_path)
+    output_path = os.path.join(output_path, obj_name)
+    os.makedirs(output_path, exist_ok=True)
 
     # Load images and masks
     ref_image = cv2.imread(ref_image_path)
@@ -165,12 +162,15 @@ def persam(args, obj_name, images_path, masks_path, output_path):
         show_points(topk_xy, topk_label, plt.gca())
         plt.title(f"Mask {best_idx}", fontsize=18)
         plt.axis('off')
-        plt.savefig(output_path + 'vis_mask_' + str(test_idx) + '.jpg')
+        vis_mask_output_path = os.path.join(output_path, f'vis_mask_{test_idx}.jpg')
+        with open(vis_mask_output_path, 'wb') as outfile:
+            plt.savefig(outfile, format='jpg')
 
         final_mask = masks[best_idx]
         mask_colors = np.zeros((final_mask.shape[0], final_mask.shape[1], 3), dtype=np.uint8)
         mask_colors[final_mask, :] = np.array([[0, 0, 128]])
-        cv2.imwrite(output_path + test_idx + '.png', mask_colors)
+        mask_output_path = os.path.join(output_path, test_idx + '.png')
+        cv2.imwrite(mask_output_path, mask_colors)
 
 
 def point_selection(mask_sim, topk=1):
