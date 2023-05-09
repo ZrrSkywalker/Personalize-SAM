@@ -77,13 +77,11 @@ Comming soon.
 
 ## Citation
 ```bash
-@misc{zhang2023personalize,
-      title={Personalize Segment Anything Model with One Shot}, 
-      author={Renrui Zhang and Zhengkai Jiang and Ziyu Guo and Shilin Yan and Junting Pan and Hao Dong and Peng Gao and Hongsheng Li},
-      year={2023},
-      eprint={2305.03048},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{zhang2023personalize,
+  title={Personalize Segment Anything Model with One Shot},
+  author={Zhang, Renrui and Jiang, Zhengkai and Guo, Ziyu and Yan, Shilin and Pan, Junting and Dong, Hao and Gao, Peng and Li, Hongsheng},
+  journal={arXiv preprint arXiv:2305.03048},
+  year={2023}
 }
 ```
 
