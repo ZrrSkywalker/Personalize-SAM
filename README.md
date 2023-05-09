@@ -4,7 +4,7 @@ Official implementation of ['Personalize Segment Anything Model with One Shot'](
 
 ## News
 * **TODO**: Release the PerSAM-assisted [Dreambooth](https://arxiv.org/pdf/2208.12242.pdf) for better fine-tuning [Stable Diffusion](https://github.com/CompVis/stable-diffusion) 📌.
-* We release the code of PerSAM and PerSAM-F 🔥. Check our [demo](https://www.youtube.com/watch?v=QlunvXpYQXM) here!
+* We release the code of PerSAM and PerSAM-F 🔥. Check our [Demo](https://www.youtube.com/watch?v=QlunvXpYQXM) here!
 * We release a new dataset for personalized segmentation, [PerSeg](https://drive.google.com/file/d/18TbrwhZtAPY5dlaoEqkPa5h08G9Rjcio/view?usp=sharing) 🔥.
 
 ## Introduction
