@@ -38,6 +38,16 @@ conda activate persam
 
 pip install -r requirements.txt
 ```
+or if you want to use virtual enviroment:
+```bash
+git clone https://github.com/ZrrSkywalker/Personalize-SAM.git
+cd Personalize-SAM
+
+python -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+```
 
 Similar to Segment Anything, our code requires `pytorch>=1.7` and `torchvision>=0.8`. Please follow the instructions [here](https://pytorch.org/get-started/locally/) to install both PyTorch and TorchVision dependencies.
 
