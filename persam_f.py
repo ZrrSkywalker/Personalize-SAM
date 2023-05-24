@@ -24,7 +24,7 @@ def get_arguments():
     parser.add_argument('--outdir', type=str, default='persam_f')
     parser.add_argument('--ckpt', type=str, default='./sam_vit_h_4b8939.pth')
 
-    parser.add_argument('--lr', type=int, default=1e-3)
+    parser.add_argument('--lr', type=float, default=1e-3) 
     parser.add_argument('--train_epoch', type=int, default=1000)
     parser.add_argument('--log_epoch', type=int, default=200)
     parser.add_argument('--ref_idx', type=str, default='00')
