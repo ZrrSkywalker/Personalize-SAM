@@ -42,7 +42,8 @@ def main():
         os.mkdir('./outputs/')
     
     for obj_name in os.listdir(images_path):
-        persam(args, obj_name, images_path, masks_path, output_path)
+        if ".DS" not in obj_name:
+            persam(args, obj_name, images_path, masks_path, output_path)
 
 
 def persam(args, obj_name, images_path, masks_path, output_path):
