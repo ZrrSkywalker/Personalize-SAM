@@ -3,5 +3,3 @@ tqdm
 numpy
 argparse
 opencv-python
-torch
-torchvision
