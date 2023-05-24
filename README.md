@@ -2,7 +2,10 @@
 
 Official implementation of ['Personalize Segment Anything Model with One Shot'](https://arxiv.org/pdf/2305.03048.pdf).
 
-💥 Try out the web demo 🤗 of PerSAM and PerSAM-F: [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/justin-zk/Personalize-SAM)
+💥 Try out the [web demo](https://huggingface.co/spaces/justin-zk/Personalize-SAM) 🤗 of PerSAM and PerSAM-F: [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/justin-zk/Personalize-SAM)
+
+
+🎉 Try out the [tutorial notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/PerSAM) in colab for your own dataset. Great thanks to [@NielsRogge](https://github.com/NielsRogge)!
 
 
 ## News
