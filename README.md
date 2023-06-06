@@ -83,6 +83,11 @@ Then, for mIoU evaluation, please run:
 python eval_miou.py --pred_path <output filename>
 ```
 
+For quickly prepare COCO dataset for this repository, just run:
+```bash
+python prepare_coco.py <coco path> data/Annotations
+```
+
 ### Personalized Stable Diffusion
 Our approach can enhance DreamBooth to better personalize Stable Diffusion for text-to-image generation.
 
