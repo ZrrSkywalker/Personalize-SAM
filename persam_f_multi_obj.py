@@ -64,7 +64,6 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
     predictor = SamPredictor(sam)
 
     print("\n------------> Segment " + obj_name)
-    print('Training size:', len()
     for i in tqdm(range(args.train_epoch_outside)):
         output_path = os.path.join(output_path, obj_name)
         os.makedirs(output_path, exist_ok=True)
