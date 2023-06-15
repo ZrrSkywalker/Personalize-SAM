@@ -71,11 +71,21 @@ For 10-second fine-tuning of 🚀 **PerSAM-F**, just run:
 python persam_f.py --outdir <output filename>
 ```
 
+For multiple object segmentation with fine-tuning of 🚀 **PerSAM-F**, just run:
+```bash
+python persam_f_multi_obj.py --outdir <output filename>
+```
+
 After running, the output masks and visualzations will be stored at `outputs/<output filename>`. 
 
 Then, for mIoU evaluation, please run:
 ```bash
 python eval_miou.py --pred_path <output filename>
+```
+
+For quickly prepare COCO dataset for this repository, just run:
+```bash
+python prepare_coco.py <coco path> data/Annotations
 ```
 
 ### Personalized Stable Diffusion
