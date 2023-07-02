@@ -23,6 +23,7 @@ def get_arguments():
     parser.add_argument('--data', type=str, default='./data')
     parser.add_argument('--outdir', type=str, default='persam_f')
     parser.add_argument('--ckpt', type=str, default='./sam_vit_h_4b8939.pth')
+    parser.add_argument('--sam_type', type=str, default='vit_h')
 
     parser.add_argument('--lr', type=float, default=1e-3) 
     parser.add_argument('--train_epoch', type=int, default=1000)
@@ -74,8 +75,16 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
 
     
     print("======> Load SAM" )
-    sam_type, sam_ckpt = 'vit_h', args.ckpt
-    sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).cuda()
+    if args.sam_type == 'vit_h':
+        sam_type, sam_ckpt = 'vit_h', 'sam_vit_h_4b8939.pth'
+        sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).cuda()
+    elif args.sam_type == 'vit_t':
+        sam_type, sam_ckpt = 'vit_t', 'weights/mobile_sam.pt'
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).to(device=device)
+        sam.eval()
+    
+    
     for name, param in sam.named_parameters():
         param.requires_grad = False
     predictor = SamPredictor(sam)
