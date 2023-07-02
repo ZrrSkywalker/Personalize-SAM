@@ -21,7 +21,7 @@ def get_arguments():
 
     parser.add_argument('--data', type=str, default='./data')
     parser.add_argument('--outdir', type=str, default='persam')
-    parser.add_argument('--ckpt', type=str, default='/home/qiaoyu/SAM_Robustness/pretrain_model/sam_vit_h_4b8939.pth')
+    parser.add_argument('--ckpt', type=str, default='sam_vit_h_4b8939.pth')
     parser.add_argument('--ref_idx', type=str, default='00')
     parser.add_argument('--sam_type', type=str, default='vit_h')
     
