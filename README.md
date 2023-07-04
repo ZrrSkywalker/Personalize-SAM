@@ -11,6 +11,7 @@ Official implementation of ['Personalize Segment Anything Model with One Shot'](
 
 
 ## News
+* Support [MobileSAM](https://github.com/ChaoningZhang/MobileSAM) 🔥 with significant efficiency improvement. Thanks for their wonderful work!
 * **TODO**: Release the PerSAM-assisted [Dreambooth](https://arxiv.org/pdf/2208.12242.pdf) for better fine-tuning [Stable Diffusion](https://github.com/CompVis/stable-diffusion) 📌.
 * We release the code of PerSAM and PerSAM-F 🔥. Check our [video](https://www.youtube.com/watch?v=QlunvXpYQXM) here!
 * We release a new dataset for personalized segmentation, [PerSeg](https://drive.google.com/file/d/18TbrwhZtAPY5dlaoEqkPa5h08G9Rjcio/view?usp=sharing) 🔥.
@@ -63,20 +64,26 @@ sam_vit_h_4b8939.pth
 
 For the training-free 🧊 **PerSAM**, just run:
 ```bash
-python persam.py --sam_type <sam module type> --outdir <output filename>
+python persam.py --outdir <output filename>
 ```
 
 For 10-second fine-tuning of 🚀 **PerSAM-F**, just run:
 ```bash
-python persam_f.py --sam_type <sam module type> --outdir <output filename>
+python persam_f.py --outdir <output filename>
 ```
+
+For [MobileSAM](https://github.com/ChaoningZhang/MobileSAM) with higher efficiency, just add `--sam_type vit_t`:
+```bash
+python persam.py/persam_f.py --outdir <output filename> --sam_type vit_t
+```
+
 
 For **Multi-Object** segmentation of the same category by PerSAM-F (Great thanks to [@mlzoo](https://github.com/mlzoo)), just run:
 ```bash
 python persam_f_multi_obj.py --sam_type <sam module type> --outdir <output filename>
 ```
 
-After running, the output masks and visualzations will be stored at `outputs/<output filename>`. 
+After running, the output masks and visualizations will be stored at `outputs/<output filename>`. 
 
 ### Evaluation
 Then, for mIoU evaluation, please run:
@@ -87,7 +94,7 @@ python eval_miou.py --pred_path <output filename>
 ### Personalized Stable Diffusion
 Our approach can enhance DreamBooth to better personalize Stable Diffusion for text-to-image generation.
 
-Comming soon.
+Coming soon.
 
 ## Citation
 ```bash
