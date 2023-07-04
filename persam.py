@@ -21,9 +21,9 @@ def get_arguments():
 
     parser.add_argument('--data', type=str, default='./data')
     parser.add_argument('--outdir', type=str, default='persam')
-    parser.add_argument('--ckpt', type=str, default='./sam_vit_h_4b8939.pth')
-
+    parser.add_argument('--ckpt', type=str, default='sam_vit_h_4b8939.pth')
     parser.add_argument('--ref_idx', type=str, default='00')
+    parser.add_argument('--sam_type', type=str, default='vit_h')
     
     args = parser.parse_args()
     return args
@@ -67,10 +67,16 @@ def persam(args, obj_name, images_path, masks_path, output_path):
     
 
     print("======> Load SAM" )
-    sam_type, sam_ckpt = 'vit_h', args.ckpt
-    sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).cuda()
+    if args.sam_type == 'vit_h':
+        sam_type, sam_ckpt = 'vit_h', 'sam_vit_h_4b8939.pth'
+        sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).cuda()
+    elif args.sam_type == 'vit_t':
+        sam_type, sam_ckpt = 'vit_t', 'weights/mobile_sam.pt'
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).to(device=device)
+        sam.eval()
+
     predictor = SamPredictor(sam)
-    
 
     print("======> Obtain Location Prior" )
     # Image features encoding

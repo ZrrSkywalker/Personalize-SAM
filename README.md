@@ -63,17 +63,17 @@ sam_vit_h_4b8939.pth
 
 For the training-free 🧊 **PerSAM**, just run:
 ```bash
-python persam.py --outdir <output filename>
+python persam.py --sam_type <sam module type> --outdir <output filename>
 ```
 
 For 10-second fine-tuning of 🚀 **PerSAM-F**, just run:
 ```bash
-python persam_f.py --outdir <output filename>
+python persam_f.py --sam_type <sam module type> --outdir <output filename>
 ```
 
 For **Multi-Object** segmentation of the same category by PerSAM-F (Great thanks to [@mlzoo](https://github.com/mlzoo)), just run:
 ```bash
-python persam_f_multi_obj.py --outdir <output filename>
+python persam_f_multi_obj.py --sam_type <sam module type> --outdir <output filename>
 ```
 
 After running, the output masks and visualzations will be stored at `outputs/<output filename>`. 
