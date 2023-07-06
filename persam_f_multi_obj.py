@@ -96,7 +96,7 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
 
             resolution = [256, 256]
 
-            gt_mask = torch.tensor(ref_mask)[:, :, 0] > 0 
+            gt_mask = torch.tensor(ref_mask)[None,:, :, 0] > 0 
             gt_mask = TVF.resize(gt_mask.float(), resolution)
             gt_mask = gt_mask.unsqueeze(0).flatten(1).cuda()
             
