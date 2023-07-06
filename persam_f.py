@@ -130,18 +130,17 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
     optimizer = torch.optim.AdamW(mask_weights.parameters(), lr=args.lr, eps=1e-4)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, args.train_epoch)
 
+    # Run the decoder
+    masks, scores, logits, logits_high = predictor.predict(
+        point_coords=topk_xy,
+        point_labels=topk_label,
+        multimask_output=True)
+    original_logits_high = original_logits_high.flatten(1)
+
     for train_idx in range(args.train_epoch):
-
-        # Run the decoder
-        masks, scores, logits, logits_high = predictor.predict(
-            point_coords=topk_xy,
-            point_labels=topk_label,
-            multimask_output=True)
-        logits_high = logits_high.flatten(1)
-
         # Weighted sum three-scale masks
         weights = torch.cat((1 - mask_weights.weights.sum(0).unsqueeze(0), mask_weights.weights), dim=0)
-        logits_high = logits_high * weights
+        logits_high = original_logits_high * weights
         logits_high = logits_high.sum(0).unsqueeze(0)
 
         dice_loss = calculate_dice_loss(logits_high, gt_mask)
