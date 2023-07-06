@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+import torchvision.transforms.functional as TVF
 
 import os
 import cv2
@@ -55,17 +56,20 @@ def main():
     for obj_name in os.listdir(images_path):
         persam_f(args, obj_name, images_path, masks_path, output_path)
 
+sam = None
 
 def persam_f(args, obj_name, images_path, masks_path, output_path):
     print("======> Load SAM" )
-    if args.sam_type == 'vit_h':
-        sam_type, sam_ckpt = 'vit_h', 'sam_vit_h_4b8939.pth'
-        sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).cuda()
-    elif args.sam_type == 'vit_t':
-        sam_type, sam_ckpt = 'vit_t', 'weights/mobile_sam.pt'
-        device = "cuda" if torch.cuda.is_available() else "cpu"
-        sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).to(device=device)
-        sam.eval()
+    global sam
+    if sam is None:
+        if args.sam_type == 'vit_h':
+            sam_type, sam_ckpt = 'vit_h', 'sam_vit_h_4b8939.pth'
+            sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).cuda()
+        elif args.sam_type == 'vit_t':
+            sam_type, sam_ckpt = 'vit_t', 'weights/mobile_sam.pt'
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).to(device=device)
+            sam.eval()
     
     
     for name, param in sam.named_parameters():
@@ -90,8 +94,11 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             ref_mask = cv2.imread(ref_mask_path)
             ref_mask = cv2.cvtColor(ref_mask, cv2.COLOR_BGR2RGB)
 
+            resolution = [256, 256]
+
             gt_mask = torch.tensor(ref_mask)[:, :, 0] > 0 
-            gt_mask = gt_mask.float().unsqueeze(0).flatten(1).cuda()
+            gt_mask = TVF.resize(gt_mask.float(), resolution)
+            gt_mask = gt_mask.unsqueeze(0).flatten(1).cuda()
             
             # print("======> Obtain Self Location Prior" )
             # Image features encoding
@@ -134,10 +141,11 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, args.train_epoch)
 
             # Run the decoder
-            masks, scores, logits, logits_high = predictor.predict(
+            masks, scores, logits, original_logits_high = predictor.predict(
                 point_coords=topk_xy,
                 point_labels=topk_label,
                 multimask_output=True)
+            original_logits_high = TVF.resize(original_logits_high,resolution)
             original_logits_high = original_logits_high.flatten(1)
 
             for train_idx in range(args.train_epoch):
