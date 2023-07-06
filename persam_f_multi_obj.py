@@ -199,7 +199,7 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             topk_xy, topk_label = point_selection(sim, topk=1)
 
             # First-step prediction
-            masks, scores, logits, logits_high = predictor.predict(
+            masks, scores, logits, original_logits_high = predictor.predict(
                         point_coords=topk_xy,
                         point_labels=topk_label,
                         multimask_output=True)

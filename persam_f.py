@@ -131,7 +131,7 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, args.train_epoch)
 
     # Run the decoder
-    masks, scores, logits, logits_high = predictor.predict(
+    masks, scores, logits, original_logits_high = predictor.predict(
         point_coords=topk_xy,
         point_labels=topk_label,
         multimask_output=True)
