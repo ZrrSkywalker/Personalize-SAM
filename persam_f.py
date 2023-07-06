@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+import torchvision.transforms.functional as TVF
 
 import os
 import cv2
@@ -70,9 +71,11 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
     ref_mask = cv2.imread(ref_mask_path)
     ref_mask = cv2.cvtColor(ref_mask, cv2.COLOR_BGR2RGB)
 
-    gt_mask = torch.tensor(ref_mask)[:, :, 0] > 0 
-    gt_mask = gt_mask.float().unsqueeze(0).flatten(1).cuda()
+    resolution = [256, 256]
 
+    gt_mask = torch.tensor(ref_mask)[None,:, :, 0] > 0
+    gt_mask = TVF.resize(gt_mask.float(), resolution)
+    gt_mask = gt_mask.flatten(1).cuda()
     
     print("======> Load SAM" )
     if args.sam_type == 'vit_h':
@@ -135,6 +138,8 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
         point_coords=topk_xy,
         point_labels=topk_label,
         multimask_output=True)
+    
+    original_logits_high = TVF.resize(original_logits_high,resolution)
     original_logits_high = original_logits_high.flatten(1)
 
     for train_idx in range(args.train_epoch):
