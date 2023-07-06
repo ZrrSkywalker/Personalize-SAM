@@ -148,7 +148,7 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             original_logits_high = TVF.resize(original_logits_high,resolution)
             original_logits_high = original_logits_high.flatten(1)
 
-            for train_idx in range(args.train_epoch):
+            for train_idx in range(args.train_epoch_inside):
                 # Weighted sum three-scale masks
                 weights = torch.cat((1 - mask_weights.weights.sum(0).unsqueeze(0), mask_weights.weights), dim=0)
                 logits_high = original_logits_high * weights
