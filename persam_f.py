@@ -51,6 +51,7 @@ def main():
         if ".DS" not in obj_name:
             persam_f(args, obj_name, images_path, masks_path, output_path)
 
+sam = None
 
 def persam_f(args, obj_name, images_path, masks_path, output_path):
     
@@ -78,14 +79,16 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
     gt_mask = gt_mask.flatten(1).cuda()
     
     print("======> Load SAM" )
-    if args.sam_type == 'vit_h':
-        sam_type, sam_ckpt = 'vit_h', 'sam_vit_h_4b8939.pth'
-        sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).cuda()
-    elif args.sam_type == 'vit_t':
-        sam_type, sam_ckpt = 'vit_t', 'weights/mobile_sam.pt'
-        device = "cuda" if torch.cuda.is_available() else "cpu"
-        sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).to(device=device)
-        sam.eval()
+    global sam
+    if sam is None:
+      if args.sam_type == 'vit_h':
+          sam_type, sam_ckpt = 'vit_h', 'sam_vit_h_4b8939.pth'
+          sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).cuda()
+      elif args.sam_type == 'vit_t':
+          sam_type, sam_ckpt = 'vit_t', 'weights/mobile_sam.pt'
+          device = "cuda" if torch.cuda.is_available() else "cpu"
+          sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).to(device=device)
+          sam.eval()
     
     
     for name, param in sam.named_parameters():
@@ -123,6 +126,8 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
 
     # Positive location prior
     topk_xy, topk_label = point_selection(sim, topk=1)
+
+
 
 
     print('======> Start Training')
