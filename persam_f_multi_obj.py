@@ -138,7 +138,7 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             mask_weights.train()
             
             optimizer = torch.optim.AdamW(mask_weights.parameters(), lr=args.lr, eps=1e-4)
-            scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, args.train_epoch)
+            scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, args.train_epoch_inside)
 
             # Run the decoder
             masks, scores, logits, original_logits_high = predictor.predict(
