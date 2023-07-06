@@ -22,7 +22,7 @@ def get_arguments():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--data', type=str, default='./data')
-    parser.add_argument('--outdir', type=str, default='persam_f')
+    parser.add_argument('--outdir', type=str, default='persam_f_multi_obj')
     parser.add_argument('--ckpt', type=str, default='./sam_vit_h_4b8939.pth')
     parser.add_argument('--sam_type', type=str, default='vit_h')
 
@@ -268,14 +268,15 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             show_points(topk_xy, topk_label, plt.gca())
             history_masks.append(mask_colors)
         # Save masks
-        
+
         plt.imshow(test_image_original)
         vis_mask_output_path = os.path.join(output_path, f'vis_mask_{test_idx}_objects:{len(history_masks)}.jpg')
         with open(vis_mask_output_path, 'wb') as outfile:
             plt.savefig(outfile, format='jpg')
+        for i,mask in history_masks:
 
-        mask_output_path = os.path.join(output_path, test_idx + '.png')
-        cv2.imwrite(mask_output_path, mask_colors)
+            mask_output_path = os.path.join(output_path, f"{test_idx}_{i}.png")
+            cv2.imwrite(mask_output_path, mask_colors)
 
 
 
