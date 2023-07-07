@@ -273,12 +273,10 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
         vis_mask_output_path = os.path.join(output_path, f'vis_mask_{test_idx}_objects:{len(history_masks)}.jpg')
         with open(vis_mask_output_path, 'wb') as outfile:
             plt.savefig(outfile, format='jpg')
-        for i,mask in history_masks:
+        for i,mask in enumerate(history_masks):
 
             mask_output_path = os.path.join(output_path, f"{test_idx}_{i}.png")
             cv2.imwrite(mask_output_path, mask_colors)
-
-
 
 class Mask_Weights(nn.Module):
     def __init__(self):
