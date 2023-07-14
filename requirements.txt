@@ -5,3 +5,4 @@ numpy
 warnings
 argparse
 opencv-python
+torchvision
