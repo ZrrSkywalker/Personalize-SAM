@@ -11,6 +11,7 @@ Official implementation of ['Personalize Segment Anything Model with One Shot'](
 
 
 ## News
+* MPS (Metal Performance Shader) support added 🔥 Faster performance on apple silicon devices.
 * Support [MobileSAM](https://github.com/ChaoningZhang/MobileSAM) 🔥 with significant efficiency improvement. Thanks for their wonderful work!
 * **TODO**: Release the PerSAM-assisted [Dreambooth](https://arxiv.org/pdf/2208.12242.pdf) for better fine-tuning [Stable Diffusion](https://github.com/CompVis/stable-diffusion) 📌.
 * We release the code of PerSAM and PerSAM-F 🔥. Check our [video](https://www.youtube.com/watch?v=QlunvXpYQXM) here!
@@ -91,6 +92,7 @@ For **Multi-Object** segmentation of the same category by PerSAM-F (Great thanks
 python persam_f_multi_obj.py --sam_type <sam module type> --outdir <output filename>
 ```
 
+Specify device to use with `--device` currently supports `cpu, cuda, mps (apple silicon)`. Will default to `cuda` and `mps` when available.
 After running, the output masks and visualizations will be stored at `outputs/<output filename>`. 
 
 ### Evaluation
