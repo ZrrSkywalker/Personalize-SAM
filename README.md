@@ -58,6 +58,14 @@ data/
 |–– Images/
 sam_vit_h_4b8939.pth
 ```
+Please download 480p [TrainVal](https://data.vision.ee.ethz.ch/csergi/share/davis/DAVIS-2017-trainval-480p.zip) split of DAVIS 2017. Then decompress the file to `DAVIS/2017` and organize them as
+```
+DAVIS/
+|––2017/
+  |–– Annotations/
+  |–– ImageSets/
+  |–– JPEGImages/
+```
 
 ## Getting Started
 
@@ -91,6 +99,18 @@ After running, the output masks and visualizations will be stored at `outputs/<o
 Then, for mIoU evaluation, please run:
 ```bash
 python eval_miou.py --pred_path <output filename>
+```
+
+### Personalized Segmentation On Video
+
+For the training-free and evaluation of 🧊 **PerSAM** on video, just run:
+```bash
+python persam_video.py --output_path <output filename>
+```
+
+For 10-second fine-tuning and evaluation of 🚀 **PerSAM-F** on video, just run:
+```bash
+python persam_video_f.py --output_path <output filename>
 ```
 
 ### Personalized Stable Diffusion

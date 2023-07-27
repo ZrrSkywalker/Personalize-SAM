@@ -264,8 +264,10 @@ class SamPredictor:
 
         if not return_logits:
             masks = high_res_masks > self.model.mask_threshold  # 0.0
-
-        return masks, iou_predictions, low_res_masks, high_res_masks
+            return masks, iou_predictions, low_res_masks, high_res_masks 
+        else:
+            return high_res_masks, iou_predictions, low_res_masks, high_res_masks 
+        
 
     def get_image_embedding(self) -> torch.Tensor:
         """
