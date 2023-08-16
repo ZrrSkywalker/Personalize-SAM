@@ -9,6 +9,9 @@ Official implementation of ['Personalize Segment Anything Model with One Shot'](
 
 🎉 Try out the [tutorial notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/PerSAM) in colab for your own dataset. Great thanks to [@NielsRogge](https://github.com/NielsRogge)!
 
+🎉 Try out the online web demo of PerSAM in OpenXLab  : 
+        [![Open in OpenXLab](https://cdn-static.openxlab.org.cn/app-center/openxlab_app.svg)](https://openxlab.org.cn/apps/detail/RenRuiZhang/Personalize-SAM)
+
 
 ## News
 * Support [MobileSAM](https://github.com/ChaoningZhang/MobileSAM) 🔥 with significant efficiency improvement. Thanks for their wonderful work!
