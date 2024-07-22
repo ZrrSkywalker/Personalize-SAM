@@ -17,7 +17,7 @@ from per_segment_anything import sam_model_registry, SamPredictor
 
 
 def get_arguments():
-    
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--data', type=str, default='./data')
@@ -30,10 +30,10 @@ def get_arguments():
     parser.add_argument('--train_epoch_inside', type=int, default=200)
     parser.add_argument('--log_epoch', type=int, default=200)
     parser.add_argument('--training_percentage', type=float, default=0.5)
-    
+
     parser.add_argument('--max_objects', type=int, default=10)
     parser.add_argument('--iou_threshold', type=float, default=0.8)
-    
+
     args = parser.parse_args()
     return args
 
@@ -47,11 +47,11 @@ def main():
     masks_path = args.data + '/Annotations/'
     output_path = './outputs/' + args.outdir
 
-    
+
 
     if not os.path.exists('./outputs/'):
         os.mkdir('./outputs/')
-    
+
     for obj_name in os.listdir(images_path):
         persam_f(args, obj_name, images_path, masks_path, output_path)
 
@@ -66,8 +66,8 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
         device = "cuda" if torch.cuda.is_available() else "cpu"
         sam = sam_model_registry[sam_type](checkpoint=sam_ckpt).to(device=device)
         sam.eval()
-    
-    
+
+
     for name, param in sam.named_parameters():
         param.requires_grad = False
     predictor = SamPredictor(sam)
@@ -90,9 +90,9 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             ref_mask = cv2.imread(ref_mask_path)
             ref_mask = cv2.cvtColor(ref_mask, cv2.COLOR_BGR2RGB)
 
-            gt_mask = torch.tensor(ref_mask)[:, :, 0] > 0 
+            gt_mask = torch.tensor(ref_mask)[:, :, 0] > 0
             gt_mask = gt_mask.float().unsqueeze(0).flatten(1).cuda()
-            
+
             # print("======> Obtain Self Location Prior" )
             # Image features encoding
             ref_mask = predictor.set_image(ref_image, ref_mask)
@@ -129,7 +129,7 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             # Learnable mask weights
             mask_weights = Mask_Weights().cuda()
             mask_weights.train()
-            
+
             optimizer = torch.optim.AdamW(mask_weights.parameters(), lr=args.lr, eps=1e-4)
             scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, args.train_epoch_inside)
 
@@ -175,7 +175,7 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
         test_image = cv2.cvtColor(test_image, cv2.COLOR_BGR2RGB)
         test_image_original = cv2.imread(test_image_path)
         test_image_original = cv2.cvtColor(test_image_original, cv2.COLOR_BGR2RGB)
-        
+
         history_masks = []
         plt.figure(figsize=(10, 10))
         for i in tqdm(range(args.max_objects)):
@@ -261,14 +261,14 @@ def persam_f(args, obj_name, images_path, masks_path, output_path):
             show_points(topk_xy, topk_label, plt.gca())
             history_masks.append(mask_colors)
         # Save masks
-        
+
         plt.imshow(test_image_original)
         vis_mask_output_path = os.path.join(output_path, f'vis_mask_{test_idx}_objects:{len(history_masks)}.jpg')
         with open(vis_mask_output_path, 'wb') as outfile:
             plt.savefig(outfile, format='jpg')
 
         mask_output_path = os.path.join(output_path, test_idx + '.png')
-        cv2.imwrite(mask_output_path, mask_colors)
+        cv2.imwrite(mask_output_path, sum(history_masks))
 
 
 
@@ -287,7 +287,7 @@ def point_selection(mask_sim, topk=1):
     topk_xy = torch.cat((topk_y, topk_x), dim=0).permute(1, 0)
     topk_label = np.array([1] * topk)
     topk_xy = topk_xy.cpu().numpy()
-    
+
     return topk_xy, topk_label
 
 
